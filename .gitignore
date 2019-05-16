@@ -1,0 +1,20 @@
+# Exclude compiled files
+*.so
+*.d
+*.pcm
+
+# Exclude files by emacs
+*~
+.~*
+
+# Exclude output and external figures
+.png
+.jpeg
+  
+# Exclude python cache
+_pycache_
+
+# Others
+.DS_Store
+*_temp/
+OutputFiles/
