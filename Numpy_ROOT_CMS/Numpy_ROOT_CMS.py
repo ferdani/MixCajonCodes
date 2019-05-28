@@ -114,15 +114,6 @@ array_wjets = rn.root2array(filenames = Path_to_tree + 'wjets.root', treename = 
 array_ww = rn.root2array(filenames = Path_to_tree + 'ww.root', treename = 'events', branches = Tree_Branches, selection = Tree_Selection)
 array_wz = rn.root2array(filenames = Path_to_tree + 'wz.root', treename = 'events', branches = Tree_Branches, selection = Tree_Selection)
 array_zz = rn.root2array(filenames = Path_to_tree + 'zz.root', treename = 'events', branches = Tree_Branches, selection = Tree_Selection)
-
-
-#Build the invariant mass of boson Z-->mu+mu-
-Muon_plus = TLorentzVector(0.,0.,0.,0.)
-Muon_minus = TLorentzVector
-
-for i in range(0, len(array_data['Muon_Px'])):
-    px_muon
-    py_muon
 '''
 
 
