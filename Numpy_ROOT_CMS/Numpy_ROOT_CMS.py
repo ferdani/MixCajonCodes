@@ -123,22 +123,31 @@ array_zz = rn.root2array(filenames = Path_to_tree + 'zz.root', treename = 'event
 
 Muon_1_E_array_data = np.array([]); Muon_2_E_array_data = np.array([]); Muon_1_Px_array_data = np.array([]); Muon_2_Px_array_data = np.array([]);
 Muon_1_Py_array_data = np.array([]); Muon_2_Py_array_data = np.array([]); Muon_1_Pz_array_data = np.array([]); Muon_2_Pz_array_data = np.array([])
+
 Muon_1_E_array_dy = np.array([]); Muon_2_E_array_dy = np.array([]); Muon_1_Px_array_dy = np.array([]); Muon_2_Px_array_dy = np.array([]);
-Muon_1_Py_array_dy = np.array([]); Muon_2_Py_array_dy = np.array([]); Muon_1_Pz_array_dy = np.array([]); Muon_2_Pz_array_dy = np.array([])
+Muon_1_Py_array_dy = np.array([]); Muon_2_Py_array_dy = np.array([]); Muon_1_Pz_array_dy = np.array([]); Muon_2_Pz_array_dy = np.array([]);
+EventWeight_dy = np.array([])
 Muon_1_E_array_qcd = np.array([]); Muon_2_E_array_qcd = np.array([]); Muon_1_Px_array_qcd = np.array([]); Muon_2_Px_array_qcd = np.array([]);
-Muon_1_Py_array_qcd = np.array([]); Muon_2_Py_array_qcd = np.array([]); Muon_1_Pz_array_qcd = np.array([]); Muon_2_Pz_array_qcd = np.array([])
+Muon_1_Py_array_qcd = np.array([]); Muon_2_Py_array_qcd = np.array([]); Muon_1_Pz_array_qcd = np.array([]); Muon_2_Pz_array_qcd = np.array([]);
+EventWeight_qcd = np.array([])
 Muon_1_E_array_singletop = np.array([]); Muon_2_E_array_singletop = np.array([]); Muon_1_Px_array_singletop = np.array([]); Muon_2_Px_array_singletop = np.array([]);
-Muon_1_Py_array_singletop = np.array([]); Muon_2_Py_array_singletop = np.array([]); Muon_1_Pz_array_singletop = np.array([]); Muon_2_Pz_array_singletop = np.array([])
+Muon_1_Py_array_singletop = np.array([]); Muon_2_Py_array_singletop = np.array([]); Muon_1_Pz_array_singletop = np.array([]); Muon_2_Pz_array_singletop = np.array([]);
+EventWeight_singletop = np.array([])
 Muon_1_E_array_ttbar = np.array([]); Muon_2_E_array_ttbar = np.array([]); Muon_1_Px_array_ttbar = np.array([]); Muon_2_Px_array_ttbar = np.array([]);
-Muon_1_Py_array_ttbar = np.array([]); Muon_2_Py_array_ttbar = np.array([]); Muon_1_Pz_array_ttbar = np.array([]); Muon_2_Pz_array_ttbar = np.array([])
+Muon_1_Py_array_ttbar = np.array([]); Muon_2_Py_array_ttbar = np.array([]); Muon_1_Pz_array_ttbar = np.array([]); Muon_2_Pz_array_ttbar = np.array([]);
+EventWeight_ttbar = np.array([])
 Muon_1_E_array_wjets = np.array([]); Muon_2_E_array_wjets = np.array([]); Muon_1_Px_array_wjets = np.array([]); Muon_2_Px_array_wjets = np.array([]);
-Muon_1_Py_array_wjets = np.array([]); Muon_2_Py_array_wjets = np.array([]); Muon_1_Pz_array_wjets = np.array([]); Muon_2_Pz_array_wjets = np.array([])
+Muon_1_Py_array_wjets = np.array([]); Muon_2_Py_array_wjets = np.array([]); Muon_1_Pz_array_wjets = np.array([]); Muon_2_Pz_array_wjets = np.array([]);
+EventWeight_wjets = np.array([])
 Muon_1_E_array_ww = np.array([]); Muon_2_E_array_ww = np.array([]); Muon_1_Px_array_ww = np.array([]); Muon_2_Px_array_ww = np.array([]);
-Muon_1_Py_array_ww = np.array([]); Muon_2_Py_array_ww = np.array([]); Muon_1_Pz_array_ww = np.array([]); Muon_2_Pz_array_ww = np.array([])
+Muon_1_Py_array_ww = np.array([]); Muon_2_Py_array_ww = np.array([]); Muon_1_Pz_array_ww = np.array([]); Muon_2_Pz_array_ww = np.array([]);
+EventWeight_ww = np.array([])
 Muon_1_E_array_wz = np.array([]); Muon_2_E_array_wz = np.array([]); Muon_1_Px_array_wz = np.array([]); Muon_2_Px_array_wz = np.array([]);
-Muon_1_Py_array_wz = np.array([]); Muon_2_Py_array_wz = np.array([]); Muon_1_Pz_array_wz = np.array([]); Muon_2_Pz_array_wz = np.array([])
+Muon_1_Py_array_wz = np.array([]); Muon_2_Py_array_wz = np.array([]); Muon_1_Pz_array_wz = np.array([]); Muon_2_Pz_array_wz = np.array([]);
+EventWeight_wz = np.array([])
 Muon_1_E_array_zz = np.array([]); Muon_2_E_array_zz = np.array([]); Muon_1_Px_array_zz = np.array([]); Muon_2_Px_array_zz = np.array([]);
-Muon_1_Py_array_zz = np.array([]); Muon_2_Py_array_zz = np.array([]); Muon_1_Pz_array_zz = np.array([]); Muon_2_Pz_array_zz = np.array([])
+Muon_1_Py_array_zz = np.array([]); Muon_2_Py_array_zz = np.array([]); Muon_1_Pz_array_zz = np.array([]); Muon_2_Pz_array_zz = np.array([]);
+EventWeight_zz = np.array([])
 
 #building the TLorentzVector and the mass arrays
 mu1 = TLorentzVector()
@@ -202,6 +211,9 @@ for i in range(0, Lenghts[1]):
         mu2_mass_dy = np.append(mu2_mass_dy, mu2.M())
         Mll_dy = np.append(Mll_dy, (mu1+mu2).M())
 
+        #calculate the weights
+        EventWeight_dy = np.append(EventWeight_dy, array_dy['EventWeight'][i])
+
 print('qcd.root')
 for i in range(0, Lenghts[2]):
     if (array_qcd['Muon_Iso'][i][0] <= 5.2 and array_qcd['Muon_Iso'][i][1] <= 5.2 and array_qcd['Muon_Charge'][i][0] * array_qcd['Muon_Charge'][i][1] == -1):
@@ -220,6 +232,9 @@ for i in range(0, Lenghts[2]):
         mu1_mass_qcd = np.append(mu1_mass_qcd, mu1.M())
         mu2_mass_qcd = np.append(mu2_mass_qcd, mu2.M())
         Mll_qcd = np.append(Mll_qcd, (mu1+mu2).M())
+
+        #calculate the weights
+        EventWeight_qcd = np.append(EventWeight_qcd, array_qcd['EventWeight'][i])
 
 print('singletop.root')
 for i in range(0, Lenghts[3]):
@@ -240,6 +255,9 @@ for i in range(0, Lenghts[3]):
         mu2_mass_singletop = np.append(mu2_mass_singletop, mu2.M())
         Mll_singletop = np.append(Mll_singletop, (mu1+mu2).M())
 
+        #calculate the weights
+        EventWeight_singletop = np.append(EventWeight_singletop, array_singletop['EventWeight'][i])
+
 print('ttbar.root')
 for i in range(0, Lenghts[4]):
     if (array_ttbar['Muon_Iso'][i][0] <= 5.2 and array_ttbar['Muon_Iso'][i][1] <= 5.2 and array_ttbar['Muon_Charge'][i][0] * array_ttbar['Muon_Charge'][i][1] == -1):
@@ -258,6 +276,9 @@ for i in range(0, Lenghts[4]):
         mu1_mass_ttbar = np.append(mu1_mass_ttbar, mu1.M())
         mu2_mass_ttbar = np.append(mu2_mass_ttbar, mu2.M())
         Mll_ttbar = np.append(Mll_ttbar, (mu1+mu2).M())
+
+        #calculate the weights
+        EventWeight_ttbar = np.append(EventWeight_ttbar, array_ttbar['EventWeight'][i])
 
 print('wjets.root')
 for i in range(0, Lenghts[5]):
@@ -278,6 +299,9 @@ for i in range(0, Lenghts[5]):
         mu2_mass_wjets = np.append(mu2_mass_wjets, mu2.M())
         Mll_wjets = np.append(Mll_wjets, (mu1+mu2).M())
 
+        #calculate the weights
+        EventWeight_wjets = np.append(EventWeight_wjets, array_wjets['EventWeight'][i])
+
 print('ww.root')
 for i in range(0, Lenghts[6]):
     if (array_ww['Muon_Iso'][i][0] <= 5.2 and array_ww['Muon_Iso'][i][1] <= 5.2 and array_ww['Muon_Charge'][i][0] * array_ww['Muon_Charge'][i][1] == -1):
@@ -296,6 +320,9 @@ for i in range(0, Lenghts[6]):
         mu1_mass_ww = np.append(mu1_mass_ww, mu1.M())
         mu2_mass_ww = np.append(mu2_mass_ww, mu2.M())
         Mll_ww = np.append(Mll_ww, (mu1+mu2).M())
+
+        #calculate the weights
+        EventWeight_ww = np.append(EventWeight_ww, array_ww['EventWeight'][i])
 
 print('wz.root')
 for i in range(0, Lenghts[7]):
@@ -316,6 +343,9 @@ for i in range(0, Lenghts[7]):
         mu2_mass_wz = np.append(mu2_mass_wz, mu2.M())
         Mll_wz = np.append(Mll_wz, (mu1+mu2).M())
 
+        #calculate the weights
+        EventWeight_wz = np.append(EventWeight_wz, array_wz['EventWeight'][i])
+
 print('zz.root')
 for i in range(0, Lenghts[8]):
     if (array_zz['Muon_Iso'][i][0] <= 5.2 and array_zz['Muon_Iso'][i][1] <= 5.2 and array_zz['Muon_Charge'][i][0] * array_zz['Muon_Charge'][i][1] == -1):
@@ -335,6 +365,8 @@ for i in range(0, Lenghts[8]):
         mu2_mass_zz = np.append(mu2_mass_zz, mu2.M())
         Mll_zz = np.append(Mll_zz, (mu1+mu2).M())
 
+        #calculate the weights
+        EventWeight_zz = np.append(EventWeight_zz, array_zz['EventWeight'][i])
 
 
 '''
@@ -344,16 +376,20 @@ for i in range(0, Lenghts[8]):
 fig=plt.figure(figsize=(20,10))
 fig.subplots_adjust(top=0.90, bottom=0.10, hspace=0.2, wspace=0.2)
 ax1 = fig.add_subplot(1,2,1)
-plt.hist(Mll_dy, bins = 250, stacked=True, normed = False)
-plt.hist(Mll_qcd, bins = 250, stacked=True, normed = False)
-plt.hist(Mll_singletop, bins = 250, stacked=True, normed = False)
-plt.hist(Mll_ttbar, bins = 250, stacked=True, normed = False)
-plt.hist(Mll_wjets, bins = 250, stacked=True, normed = False)
-plt.hist(Mll_ww, bins = 250, stacked=True, normed = False)
-plt.hist(Mll_wz, bins = 250, stacked=True, normed = False)
-plt.hist(Mll_zz, bins = 250, stacked=True, normed = False)
 
-#plt.hist(Mll_data, bins = 250.0, stacked=False, normed = False)
+W = [EventWeight_dy, EventWeight_qcd, EventWeight_singletop, EventWeight_ttbar, EventWeight_wjets, EventWeight_ww, EventWeight_wz, EventWeight_zz] #weights for each sample
+
+labels = ['Drell-Yan: %i #' %len(Mll_dy), 'QCD: %i #' %len(Mll_qcd), 'single top: %i #' %len(Mll_singletop), 'ttbar: %i #' %len(Mll_ttbar),
+            'W-jets: %i #' %len(Mll_wjets), 'WW: %i #' %len(Mll_ww), 'WZ: %i #' %len(Mll_wz), 'ZZ: %i #' %len(Mll_zz)]
+
+mass = [Mll_dy, Mll_qcd, Mll_singletop, Mll_ttbar, Mll_wjets, Mll_ww, Mll_wz, Mll_zz]
+
+plt.hist(mass, bins = 250, histtype = 'bar', stacked = True, normed = False, label = labels, weights = W)
+
+counts, bin_edges = np.histogram(Mll_data, bins = 250)
+bin_centres = (bin_edges[:-1] + bin_edges[1:])/2.
+err = np.random.rand(bin_centres.size)*100
+plt.errorbar(bin_centres, counts, yerr=err, fmt='o', color ='k', label = 'data: %i #' %len(Mll_data))
 
 ax1.set_title(r'$Z \to \mu^{+}\mu^{-}$', fontsize=16)
 ax1.set_xlabel(r'$M_{ll}$ [GeV]', fontsize=14)
@@ -361,20 +397,15 @@ ax1.set_ylabel(r'counts', fontsize=14)
 #ax1.set_yscale('log')
 #ax1.set_xscale('log')
 ax1.set_xlim([0, 200])
+ax1.set_ylim(ymin= 0.0)
 plt.grid(True)
-#plt.legend()
+plt.legend()
 
 ax2 = fig.add_subplot(1,2,2)
-plt.hist(Mll_dy, bins = 50, stacked=True, normed = False)
-plt.hist(Mll_qcd, bins = 50, stacked=True, normed = False)
-plt.hist(Mll_singletop, bins = 50, stacked=True, normed = False)
-plt.hist(Mll_ttbar, bins = 50, stacked=True, normed = False)
-plt.hist(Mll_wjets, bins = 50, stacked=True, normed = False)
-plt.hist(Mll_ww, bins = 50, stacked=True, normed = False)
-plt.hist(Mll_wz, bins = 50, stacked=True, normed = False)
-plt.hist(Mll_zz, bins = 50, stacked=True, normed = False)
 
-#plt.hist(Mll_data, bins = 20.0, stacked=False, normed = False)
+plt.hist(mass, bins = 250, histtype = 'bar', stacked = True, normed = False, label = labels)
+
+plt.errorbar(bin_centres, counts, yerr=None, fmt='o', color ='k', label = 'data: %i #' %len(Mll_data))
 
 ax2.set_title(r'$Z \to \mu^{+}\mu^{-}$', fontsize=16)
 ax2.set_xlabel(r'$M_{ll}$ [GeV]', fontsize=14)
@@ -383,7 +414,7 @@ ax2.set_yscale('log')
 #ax.set_xscale('log')
 ax2.set_xlim([0, 200])
 plt.grid(True)
-#plt.legend()
+plt.legend()
 
 
 plt.show();
