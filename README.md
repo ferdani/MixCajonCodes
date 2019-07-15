@@ -1,6 +1,12 @@
 # MixCajonCodes
 Different codes in the same box for different uses
 
+INSTALLATION
+Use git clone in terminal 
+```bash
+git clone https://github.com/ferdani/MixCajonCodes.git <FolderNameYouWant>
+```
+
 ## Codes_for_many_things<br/>
 Sandbox of different codes for different proposals
 
