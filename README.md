@@ -1,8 +1,14 @@
 # MixCajonCodes
 Different codes in the same box for different uses
 
+## Codes_for_many_things<br/>
+Sandbox of different codes for different proposals
 
-## Jose_ROOT_histos_example
+## Nuclei_chart_LEGO_bricks<br/>
+The design of a nuclei chart made with LEGO-Bricks using two types of bricks and different colors to take account the different decays
+
+## Jose_ROOT_histos_example<br/>
+Pure ROOT example using histograms 
 
 ## Numpy_ROOT_CMS<br/>
 CMS tutorial website:<br/>
