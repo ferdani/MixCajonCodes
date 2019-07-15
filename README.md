@@ -1,7 +1,7 @@
 # MixCajonCodes
 Different codes in the same box for different uses
 
-INSTALLATION
+INSTALLATION<br/>
 Use git clone in terminal 
 ```bash
 git clone https://github.com/ferdani/MixCajonCodes.git <FolderNameYouWant>
