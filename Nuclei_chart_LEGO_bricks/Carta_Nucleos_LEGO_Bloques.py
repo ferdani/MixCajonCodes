@@ -4,10 +4,13 @@
 Created on Wed Jul 10 11:48:34 2019
 
 @author: Daniel Fernandez Fernandez
-daniel.fernandez.fernandez.94@gmail.com
+dani.fernandez@usc.es
 
 EVALUAR EL NUMERO DE LADRILLOS DE LEGO QUE SON NECESARIOS PARA PODER CONSTRUIR LA CARTA DE NUCLEOS
 ADEMAS DEL NUMERO DE COLORES Y LADRILLOS POR COLOR. ESE COLOR REPRESENTA EL DECAY:
+
+EVALUATE THE NUMBER OF LEGO BRICKS THAT ARE NECESSARY TO BE ABLE TO BUILD THE NUCLEUS CHART
+IN ADDITION TO THE NUMBER OF COLORS AND BRICKS BY COLOR. THAT COLOR REPRESENTS THE DECAY:
 A --> alpha
 Bplus --> Beta decay +
 Bminus --> Beta decay -
@@ -23,12 +26,13 @@ import numpy as np
 import math
 import matplotlib
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
 """
----------------- Leer los datos del .txt descargado del NNDC ---------------------------
+---------------- Read the data from .txt downloaded from NNDC ---------------------------
 """
 
-Data_path = '/Users/macbookpro/Dani/INVESTIGACIÓN/ProyectosDivulgacion/LEGO-IGFAE/CartaNucelar/'
+Data_path = './'
 Data_name = 'Mass_Binding.txt'
 
 dtype1 = np.dtype([('N', 'f'),
@@ -41,30 +45,30 @@ dtype1 = np.dtype([('N', 'f'),
 
 file_data = np.loadtxt(Data_path + Data_name, dtype=dtype1, skiprows=1, usecols=(0,1,2,3,4,5,6))
 
-N = file_data['N'] #neutrones
-Z = file_data['Z'] #electrones
+N = file_data['N'] #neutrons
+Z = file_data['Z'] #electrons
 A = file_data['A'] #Atomic mass
-El = file_data['El'] #Element
-Mass_excess = file_data['Mass_excess'] #exceso de masa
-Binding_A = file_data['Binding_energy_A'] #energia ligadura dividida por A
-Decay_Channel = file_data['Decay_Channel'] #canal desintegracion
+El = file_data['El'] #Elements
+Mass_excess = file_data['Mass_excess'] #mass excess
+Binding_A = file_data['Binding_energy_A'] #binding energy divided A
+Decay_Channel = file_data['Decay_Channel'] #decay channel
 
 '''
---------------------- calcular numero de ladrillos --------------------------------------
-Dos tipos de bloque LEGO: 1x1 de 1cm de alto (REF-LEGO: 3005) y 1x1 de 0.33 cm de alto (REF-LEGO:3024)
+--------------------- bricks number calculation --------------------------------------
+Two types of LEGO bricks: 1x1 de 1cm height (REF-LEGO: 3005) y 1x1 de 0.33 cm height (REF-LEGO:3024)
 '''
 
 MassExcess_over_A = np.array([])
 MassExcess_over_A_corrected = np.array([])
-Bricks_nucleo = [[0.0]] #este será el numero de bricks por nucleo
+Bricks_nucleo = [[0.0]] #this will be the number of bricks per nucleus
 
-#Para todos los elementos evaluamos el ratio del exceso de masa sobre A
+#For all the elements we evaluate the ratio of mass excess over A
 for i in range(0, len(El)):
    ratio = Mass_excess[i]/A[i]
    MassExcess_over_A = np.append(MassExcess_over_A, ratio)
 
-Offset_groundfloor = abs(min(MassExcess_over_A)) #en absoluto porque el minimo esta en un valor negativo
-#Para todos los elementos se les suma este Offset_groundfloor haciendo que empiecen desde cero
+Offset_groundfloor = abs(min(MassExcess_over_A)) #in absolit value because the minimum was negative
+#For all the elements this Offset_groundfloor is added, starting from zero
 
 #indice_min = np.argmin(MassExcess_over_A)
 #indice_max = np.argmax(MassExcess_over_A)
@@ -72,25 +76,25 @@ Offset_groundfloor = abs(min(MassExcess_over_A)) #en absoluto porque el minimo e
 for i in range(0, len(El)):
    MassExcess_over_A_corrected = np.append(MassExcess_over_A_corrected, Offset_groundfloor + MassExcess_over_A[i])
 
-#Ahora se adjudica al máximo un numero de ladrillos (cm), este será el valor mas alto de las columnas que tendrá la carte de nucleos
-Fixed_max_cm = 95 #cm
-#Ahora se pone un mínimo de bricks para poner el cero (si se pone en cero habrá elementos tocando la base)
-Offset_bricks = 5 #bricks = cm
+#Now a number of bricks (cm) is awarded to the maximum, this will be the highest value of the columns that the core chart will have
+Fixed_max_cm = 90 #cm
+#Now you put a minimum of bricks to put the zero (if it is set to zero there will be elements touching the base)
+Offset_bricks = 10 #bricks = cm
 
 for i in range(0, len(El)):
    cm_evaluated = MassExcess_over_A_corrected[i] * Fixed_max_cm / max(MassExcess_over_A_corrected)
-   #adjudicamos 1-cm a 1-brick, lo que sea decimal se adjudicará al brick de 0.33-cm
+   #we award 1cm to 1-brick, whichever is decimal will be awarded to the brick of 0.33cm
    Bricks_nucleo_integer = cm_evaluated // 1
    Bricks_nucle_decimal = cm_evaluated % 1
 
    bb = [Bricks_nucleo_integer + Offset_bricks, (Bricks_nucle_decimal/0.33) // 1]
    Bricks_nucleo.append(bb)
 
-del Bricks_nucleo[0] #eliminar el primer elemento que es un cero puesto como inicializador antes
+del Bricks_nucleo[0] #delete the first element that is a zero set as an initializer before
 
 '''
---------------------- calcular numero de ladrillos de colores --------------------------------------
-Hay 7 colores, uno por decay, y dos tipos de ladrillos
+--------------------- calculate number of colored bricks --------------------------------------
+There are 7 colors, one for decay, and two types of bricks
 '''
 
 Bminus_color = [[0.0]] #numero de bloques necesarios de cada tipo del color concreto del Bminus decay
@@ -103,37 +107,37 @@ alpha_color = [[0.0]] #numero de bloques necesarios de cada tipo del color concr
 
 for i in range(0, len(Decay_Channel)):
    if Decay_Channel[i] == 'Bminus':
-      a = [Bricks_nucleo[i][0], Bricks_nucleo[i][1]] #bloques de 1x1 de 1 cm , bloques de 1x1 de 0.33 cm
+      a = [Bricks_nucleo[i][0], Bricks_nucleo[i][1]] #bricks of 1x1 of 1 cm , bricks of 1x1 of 0.33 cm
       Bminus_color.append(a)
    if Decay_Channel[i] == 'Bplus':
-      b = [Bricks_nucleo[i][0], Bricks_nucleo[i][1]] #bloques de 1x1 de 1 cm , bloques de 1x1 de 0.33 cm
+      b = [Bricks_nucleo[i][0], Bricks_nucleo[i][1]] #bricks of 1x1 of 1 cm , bricks of 1x1 of 0.33 cm
       Bplus_color.append(b)
    if Decay_Channel[i] == 'N':
-      c = [Bricks_nucleo[i][0], Bricks_nucleo[i][1]] #bloques de 1x1 de 1 cm , bloques de 1x1 de 0.33 cm
+      c = [Bricks_nucleo[i][0], Bricks_nucleo[i][1]] #bricks of 1x1 of 1 cm , bricks of 1x1 of 0.33 cm
       N_color.append(c)
    if Decay_Channel[i] == 'P':
-      d = [Bricks_nucleo[i][0], Bricks_nucleo[i][1]] #bloques de 1x1 de 1 cm , bloques de 1x1 de 0.33 cm
+      d = [Bricks_nucleo[i][0], Bricks_nucleo[i][1]] #bricks of 1x1 of 1 cm , bricks of 1x1 of 0.33 cm
       P_color.append(d)
    if Decay_Channel[i] == 'SF':
-      e = [Bricks_nucleo[i][0], Bricks_nucleo[i][1]] #bloques de 1x1 de 1 cm , bloques de 1x1 de 0.33 cm
+      e = [Bricks_nucleo[i][0], Bricks_nucleo[i][1]] #bricks of 1x1 of 1 cm , bricks of 1x1 of 0.33 cm
       SF_color.append(e)
    if Decay_Channel[i] == 'Stable':
-      f = [Bricks_nucleo[i][0], Bricks_nucleo[i][1]] #bloques de 1x1 de 1 cm , bloques de 1x1 de 0.33 cm
+      f = [Bricks_nucleo[i][0], Bricks_nucleo[i][1]] #bricks of 1x1 of 1 cm , bricks of 1x1 of 0.33 cm
       Stable_color.append(f)
    if Decay_Channel[i] == 'alpha':
-      g = [Bricks_nucleo[i][0], Bricks_nucleo[i][1]]
+      g = [Bricks_nucleo[i][0], Bricks_nucleo[i][1]] #bricks of 1x1 of 1 cm , bricks of 1x1 of 0.33 cm
       alpha_color.append(g)
 
-del Bminus_color[0] #eliminar el primer elemento que es un cero puesto como inicializador antes
-del Bplus_color[0] #eliminar el primer elemento que es un cero puesto como inicializador antes
-del N_color[0] #eliminar el primer elemento que es un cero puesto como inicializador antes
-del P_color[0] #eliminar el primer elemento que es un cero puesto como inicializador antes
-del SF_color[0] #eliminar el primer elemento que es un cero puesto como inicializador antes
-del Stable_color[0] #eliminar el primer elemento que es un cero puesto como inicializador antes
-del alpha_color[0] #eliminar el primer elemento que es un cero puesto como inicializador antes
+del Bminus_color[0] #delete the first element that is a zero set as an initializer before
+del Bplus_color[0] #delete the first element that is a zero set as an initializer before
+del N_color[0] #delete the first element that is a zero set as an initializer before
+del P_color[0] #delete the first element that is a zero set as an initializer before
+del SF_color[0] #delete the first element that is a zero set as an initializer before
+del Stable_color[0] #delete the first element that is a zero set as an initializer before
+del alpha_color[0] #delete the first element that is a zero set as an initializer before
 
 '''
-#--------------------- Evaluacion Final de ladrillos y precio --------------------------------------
+#--------------------- Final evaluation of bricks and price --------------------------------------
 '''
 rojo_grande = 0.0
 rojo_peque = 0.0
@@ -179,20 +183,75 @@ for i in range(0, len(P_color)):
    naranja_peque = naranja_peque + P_color[i][1]
 
 
-print('Ladrillos color rojo beta_menos grandes ', rojo_grande, ' y pequeños ', rojo_peque)
-print('Ladrillos color azul beta_mas grandes ', azul_grande, ' y pequeños ', azul_peque)
-print('Ladrillos color amarillo alpha grandes', amarillo_grande, ' y pequeños ', amarillo_peque)
-print('Ladrillos color negro estables grandes ', negro_grande, ' y pequeños ', negro_peque)
-print('Ladrillos color verde fision espontanea grandes ', verde_grande, ' y pequeños ', verde_peque)
-print('Ladrillos color violeta neutron grandes ', violeta_grande, ' y pequeños ', violeta_grande)
-print('Ladrillos color naranja proton grandes ', naranja_grande, ' y pequeños ', naranja_peque)
+print('Bricks red color beta_menos decay, large ', rojo_grande, ' and little ', rojo_peque)
+print('Bricks blue color beta_mas decay, large ', azul_grande, ' and little ', azul_peque)
+print('Bricks yellow color alpha decay, large ', amarillo_grande, ' and little ', amarillo_peque)
+print('Bricks black color stable, large ', negro_grande, ' and little ', negro_peque)
+print('Bricks green color spontaneus fission decay, large ', verde_grande, ' and little ', verde_peque)
+print('Bricks violet color neutron decay, large ', violeta_grande, ' and little ', violeta_grande)
+print('Bricks orange color proton decay, large ', naranja_grande, ' and little ', naranja_peque)
 print('-----------------------------------------------------------------------------------')
-print('Cantidad ladrillos grandes ', rojo_grande + azul_grande + amarillo_grande + negro_grande + verde_grande + violeta_grande + naranja_grande)
-print('Cantidad ladrillos pequeños ', rojo_peque + azul_peque + amarillo_peque + negro_peque + verde_peque + violeta_peque + naranja_peque)
+print('Quantity large bricks ', rojo_grande + azul_grande + amarillo_grande + negro_grande + verde_grande + violeta_grande + naranja_grande)
+print('Quantity small bricks ', rojo_peque + azul_peque + amarillo_peque + negro_peque + verde_peque + violeta_peque + naranja_peque)
 print('-----------------------------------------------------------------------------------')
 Price_grandes = (rojo_grande + azul_grande + amarillo_grande + negro_grande + verde_grande + violeta_grande + naranja_grande)*0.07
 Price_peques = (rojo_peque + azul_peque + amarillo_peque + negro_peque + verde_peque + violeta_peque + naranja_peque)*0.04
-print('Precio con 0.07 euros/bloque grande ', Price_grandes)
-print('Precio con 0.04 euros/bloque pequeño ', Price_peques)
+print('Price with average 0.07 euros/large_brick ', Price_grandes)
+print('Price with average 0.04 euros/little_brick ', Price_peques)
 Price_Total = Price_grandes + Price_peques
 print('TOTAL: ', Price_Total)
+
+'''
+--------------------- Isobaric representation of A  ------------
+'''
+
+#A chosen to represent:
+A_choosen = 60.0
+
+Isobar_array_N = np.array([])
+Isobar_array_Z = np.array([])
+Isobar_array_Bricks_big = np.array([])
+Isobar_array_Bricks_small = np.array([])
+Isobar_array_elements = np.array([])
+
+for i in range(0, len(A)):
+   if A[i] == A_choosen:
+      Isobar_array_N = np.append(Isobar_array_N, N[i])
+      Isobar_array_Z = np.append(Isobar_array_Z, Z[i])
+      Isobar_array_Bricks_big = np.append(Isobar_array_Bricks_big, Bricks_nucleo[i][0])
+      Isobar_array_Bricks_small = np.append(Isobar_array_Bricks_small, Bricks_nucleo[i][1])
+      Isobar_array_elements = np.append(Isobar_array_elements, El[i])
+
+#Building the representation
+fig=plt.figure(figsize=(12,6))
+fig.subplots_adjust(top=0.90, bottom=0.10, hspace=0.5, wspace=0.25)
+
+ax=fig.add_subplot(1,2,1)
+ax.set_title('Bricks for A = %s isobara' %A_choosen, fontsize=15)
+ax.set_ylabel(r'Height [cm]', fontsize=12)
+ax.set_xlabel(r'N', fontsize=12)
+plt.stackplot(Isobar_array_N, Isobar_array_Bricks_big, Isobar_array_Bricks_small * 0.33, labels=['Big-Bricks','Small-Bricks'])
+plt.grid(True)
+plt.legend(loc = 'upper center')
+
+ax_1=fig.add_subplot(1,2,2)
+ax_1.set_title('Bricks for A = %s isobara' %A_choosen, fontsize=15)
+ax_1.set_ylabel(r'Height [cm]', fontsize=12)
+ax_1.set_xlabel(r'Z', fontsize=12)
+plt.stackplot(Isobar_array_Z, Isobar_array_Bricks_big, Isobar_array_Bricks_small * 0.33, labels=['Big-Bricks','Small-Bricks'])
+plt.grid(True)
+plt.legend(loc = 'upper center')
+
+'''
+--------------------- Z - N - Mass excess over A (in log plane) Nucleus Chart plot ---------------
+'''
+
+fig_2 = plt.figure()
+ax=fig_2.add_subplot(1,1,1)
+plt.scatter(Z,N,c=np.log(MassExcess_over_A_corrected), marker='o', cmap='viridis')
+plt.colorbar()
+ax.set_title('Nucleus chart (arbitrary units)', fontsize=15)
+ax.set_ylabel(r'N', fontsize=12)
+ax.set_xlabel(r'Z', fontsize=12)
+
+plt.show()
