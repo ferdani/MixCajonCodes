@@ -8,7 +8,8 @@ git clone https://github.com/ferdani/MixCajonCodes.git <FolderNameYouWant>
 ```
 
 ## Codes_for_many_things<br/>
-Sandbox of different codes for different proposals
+Sandbox of different codes for different proposals:
+  - PintaPintaFunctions.py --> A generic code to plot any function
 
 ## Nuclei_chart_LEGO_bricks<br/>
 The design of a nuclei chart made with LEGO-Bricks using two types of bricks and different colors to take account the different decays
