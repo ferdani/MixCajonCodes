@@ -20,4 +20,8 @@ Pure ROOT example using histograms
 CMS tutorial website:<br/>
 http://ippog.org/resources/2012/cms-hep-tutorial<br/>
 root_numpy reference website:<br/>
-http://scikit-hep.org/root_numpy/reference/index.html#root-numpy 
+http://scikit-hep.org/root_numpy/reference/index.html#root-numpy
+
+## TEII_code_examples<br/>
+Técnicas experimentales 2
+Ejemplos de códigos para trabajar con histogramas, análisis estadístico y ajustes
