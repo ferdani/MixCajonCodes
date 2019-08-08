@@ -24,5 +24,5 @@ root_numpy reference website:<br/>
 http://scikit-hep.org/root_numpy/reference/index.html#root-numpy
 
 ## TEII_code_examples<br/>
-Técnicas experimentales 2
+Técnicas experimentales 2<br/>
 Ejemplos de códigos para trabajar con histogramas, análisis estadístico y ajustes
