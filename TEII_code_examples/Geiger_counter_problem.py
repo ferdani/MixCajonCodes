@@ -8,11 +8,13 @@ dani.fernandez@usc.es
 
 Geiger Counter Analysis
 
-Ejemplo: (1.8 en [VAR10]) Datos de una desintegración radiactiva medidas por un contador Geiger
-en el que se han efectuado medidas cada 30 segundos.
+Example: (1.8 in [VAR10]) Data of radioactive decay measured by a Geiger counter in which measurements have been made every 30 seconds.
+
 """
 
 import numpy as np
+import matplotlib
+import matplotlib.pyplot as plt
 
 '''
 -------------------------------------------- Read the data -----------------------------------------------------------------------
@@ -34,10 +36,51 @@ Geiger_counts = np.array([7, 5, 3, 6, 8, 4, 5, 7, 6, 4, 6, 3, 4, 4, 5, 7, 5, 4, 
 """
 Variable legend:
 Xi -- Results of the random variable x
-ni -- Absolute frecuency
+ni -- Absolute frequency
 fi -- Relative frequency
 Ni -- Absolute cumulative frequency
+N  -- Total sum of independents measurements
 Fi -- Relative cumulative frequency
 """
 
 Xi, ni = np.unique(Geiger_counts, return_counts=True)
+
+N = np.sum(ni)
+
+fi = ni/N
+
+Ni = np.cumsum(ni)
+
+Fi = np.cumsum(fi)
+
+# Representation in a table:
+print('--------------------------------------')
+print('xi  |  ni  |   fi   |   Ni   |   Fi   ')
+print('--------------------------------------')
+for i in range(0, len(Xi)):
+    print('%i   |  %i   |  %.3f  |  %i    |   %.3f' %(Xi[i], ni[i], fi[i], Ni[i], Fi[i]))
+
+'''
+------------------------------------------ Figures and representation --------------------------------------------------------------
+'''
+
+# Define the work-figure space
+fig = plt.figure(figsize=(12,5))
+
+# Plot the bar-histogram (Xi, ni)
+ax1 = fig.add_subplot(121)
+plt.bar(Xi, ni, edgecolor='k')
+ax1.xaxis.set_ticks(Xi)
+ax1.set_title('Absolute frequency', fontsize=16)
+ax1.set_xlabel(r'$X_i$', fontsize=14)
+ax1.set_ylabel(r'$n_i$', fontsize=14)
+
+# Plot the bar-histogram (Xi, Ni)
+ax2 = fig.add_subplot(122)
+plt.bar(Xi, Ni, edgecolor='k')
+ax2.xaxis.set_ticks(Xi)
+ax2.set_title('Absolute cumulative frequency', fontsize=16)
+ax2.set_xlabel(r'$X_i$', fontsize=14)
+ax2.set_ylabel(r'$N_i$', fontsize=14)
+
+plt.show()
