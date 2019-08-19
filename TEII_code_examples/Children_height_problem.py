@@ -137,6 +137,9 @@ print('%.2f  |   %i       %i      |    %.2f    |       %s       |     %s        
 
 IR = quartiles[2] - quartiles[0] #IR = P(0.75) - P(0.25)
 
+print('\n')
+print('Interquartile range: ' IR)
+
 for i in range(0, len(ni)):
     if ((ni[i] >= 1.5*IR) and (ni[i] < 3.0*IR)):
         print('Low atypical point-value: %i' %ni[i])
