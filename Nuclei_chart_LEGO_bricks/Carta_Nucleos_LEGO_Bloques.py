@@ -77,9 +77,9 @@ for i in range(0, len(El)):
    MassExcess_over_A_corrected = np.append(MassExcess_over_A_corrected, Offset_groundfloor + MassExcess_over_A[i])
 
 #Now a number of bricks (cm) is awarded to the maximum, this will be the highest value of the columns that the core chart will have
-Fixed_max_cm = 90 #cm
+Fixed_max_cm = 95 #cm
 #Now you put a minimum of bricks to put the zero (if it is set to zero there will be elements touching the base)
-Offset_bricks = 10 #bricks = cm
+Offset_bricks = 5 #bricks = cm
 
 for i in range(0, len(El)):
    cm_evaluated = MassExcess_over_A_corrected[i] * Fixed_max_cm / max(MassExcess_over_A_corrected)
@@ -188,7 +188,7 @@ print('Bricks blue color beta_mas decay, large ', azul_grande, ' and little ', a
 print('Bricks yellow color alpha decay, large ', amarillo_grande, ' and little ', amarillo_peque)
 print('Bricks black color stable, large ', negro_grande, ' and little ', negro_peque)
 print('Bricks green color spontaneus fission decay, large ', verde_grande, ' and little ', verde_peque)
-print('Bricks violet color neutron decay, large ', violeta_grande, ' and little ', violeta_grande)
+print('Bricks violet color neutron decay, large ', violeta_grande, ' and little ', violeta_peque)
 print('Bricks orange color proton decay, large ', naranja_grande, ' and little ', naranja_peque)
 print('-----------------------------------------------------------------------------------')
 print('Quantity large bricks ', rojo_grande + azul_grande + amarillo_grande + negro_grande + verde_grande + violeta_grande + naranja_grande)
@@ -248,10 +248,51 @@ plt.legend(loc = 'upper center')
 
 fig_2 = plt.figure()
 ax=fig_2.add_subplot(1,1,1)
-plt.scatter(Z,N,c=np.log(MassExcess_over_A_corrected), marker='o', cmap='viridis')
+plt.scatter(N,Z,c=np.log(MassExcess_over_A_corrected), marker='o', cmap='viridis')
 plt.colorbar()
 ax.set_title('Nucleus chart (arbitrary units)', fontsize=15)
-ax.set_ylabel(r'N', fontsize=12)
-ax.set_xlabel(r'Z', fontsize=12)
+ax.set_ylabel(r'Z', fontsize=12)
+ax.set_xlabel(r'N', fontsize=12)
+
+
+'''
+--------------------- Nucleus Chart 3d ------------------------------
+'''
+
+# Create the work space
+fig_3 = plt.figure()
+plt.ioff() #inline mode off
+ax = fig_3.add_subplot(111, projection='3d')
+
+#plt.rcParams['agg.path.chunksize'] = 1000 #If exist a problem doing zoom is here with chunks. It works with TkAgg matplotlib backend
+
+# Make histogram stuff with numpy in 2d
+H, xedges, yedges = np.histogram2d(N, Z, bins=(178,119), weights=np.float32(MassExcess_over_A_corrected))
+
+#make a mesh between points
+xpos, ypos = np.meshgrid(xedges[:-1]+xedges[1:], yedges[:-1]+yedges[1:])
+
+# H needs to be rotated and flipped
+H = np.rot90(H)
+H = np.flipud(H)
+
+xpos = xpos.flatten()/2.
+ypos = ypos.flatten()/2.
+zpos = np.zeros_like(xpos)
+
+dx = xedges [1] - xedges [0]
+dy = yedges [1] - yedges [0]
+dz = H.flatten()
+
+cmap = plt.cm.get_cmap('YlOrRd') # Get desired colormap - you can change this!
+max_height = np.max(dz)   # get range of colorbars so we can normalize
+min_height = np.min(dz)
+# scale each z to [0,1], and get their rgb values
+rgba = [cmap((k-min_height)/max_height) for k in dz]
+
+ax.bar3d(xpos, ypos, zpos, dx, dy, dz, color=rgba, zsort='average')
+
+#ax.autoscale(enable=True, axis='both', tight=False)
+#ax.set_zlabel('Counts', fontsize=15)
 
 plt.show()
